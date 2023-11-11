@@ -69,9 +69,9 @@ const handleSubmit = (e) => {
               onClick={status === "recording" ? stopRecording : startRecording}
             />
           </div>
-          {/* {status === "recording" && (
+          {status === "recording" && (
             <p>Recording...</p>
-          )} */}
+          )}
           {mediaBlobUrl && (
             <audio src={mediaBlobUrl} controls autoPlay />
           )}
