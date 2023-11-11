@@ -44,8 +44,8 @@ async def translate(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, dest_file ) 
     
     # Example usage
-    mp3_file_path = r"C:\Users\A lan John Chacko\tinkhack-team-beta\backend\temp.webm"
-    wav_file_path = r"C:\Users\A lan John Chacko\tinkhack-team-beta\backend\temp.wav"
+    mp3_file_path = r"C:\Users\adith\tinkhack-team-beta\backend\temp.webm"
+    wav_file_path = r"C:\Users\adith\tinkhack-team-beta\backend\temp.wav"
     convert_webm_to_wav(mp3_file_path, wav_file_path)
 
     text = transcribe_speech(wav_file_path)
