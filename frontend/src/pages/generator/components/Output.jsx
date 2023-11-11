@@ -1,73 +1,32 @@
 import React, { useState } from 'react'
 import edit from '../../../assets/Edit.jpg'
 import './Output.css'
-import { jsPDF } from "jspdf";
-
+import jsPDF from 'jspdf'
 const Output = () => {
-  const[Edit,setEdit]=useState(false);
-  const[content,setContent] =useState(
-    
-    
-    `
-Mens Hostel, Thrikkara
-[Date]
-
-To, 
-The Principal, 
-Model Engineering College, Thrikkara
-
-Subject: [Subject of the Letter]
-
-Dear Principal,
-
-I hope this letter finds you in the best of health and spirits. I am writing to formally request [describe the purpose of the letter here]. 
-
-[Provide more details about the purpose of the letter here. Explain why you are writing and add more important details.]
-
-I assure you that [provide assurances if any]. I understand the importance of [mention the importance] and I am committed to [mention your commitment].
-
-I kindly request your understanding and support during this [mention the situation or phase]. I am committed to my studies and have maintained good grades throughout, which can be verified from the school records.
-
-Thank you for your attention to this matter. I look forward to your positive response.
-
-Sincerely,
-[Your Name]
-
-    `
-     );
-  
-
-
-  const handleEdit =() =>{
+  const [content,setContent] =useState('');
+  const [Edit,setEdit] =useState(false);
+  const handleContent = () =>{
+    setContent(content)
     setEdit(true)
   }
-  // Landscape export, 2×4 inches
-  const handleGeneratePDF = () => {
-    // Create a new jsPDF instance
+  const handlePdf =()=>{
     const doc = new jsPDF({
-      orientation: 'portrait',
-      unit: 'in',
-    format: [21, 30]
+      orientation: "landscape",
+      unit: "in",
+      format: [20, 20]
     });
-
     
-    // Add text to the PDF
-    doc.text(content, 2, 2);
+    doc.text(content, 1, 1);
+    doc.save("two-by-four.pdf");
+  }
 
-    // Save the PDF
-    doc.save('output.pdf');
-  };
-
-  const handleContentChange = (e) => {
-    setContent(e.target.value);
-  };
   return (
     <div className='Output_Main'>
     <div className='Output_Main_upper'>     
     <div className='Dowload_Main'>
         <div className='Download_Main_Left'>
-            <div  className='Download_Main_Left_Contents'>
-                <button onClick={handleEdit} >Edit as per Your Choises<img src={edit} alt="" /></button>
+            <div className='Download_Main_Left_Contents'>
+                <button onClick={handlePdf}>Edit as per Your Choises<img src={edit} alt="" /></button>
                 
             </div>       
         </div>
@@ -96,17 +55,10 @@ Sincerely,
               <div className='Language_selector_button'>
                 <button>MAL</button>
               </div>
+              
           </div>
-          <div className='Generating_container'> <p>
-           <textarea
-           value={content}
-           onChange={handleContentChange} 
-             contentEditable={handleEdit}
-            >
-
-           </textarea>      
-           
-          </p>
+          <div contentEditable={Edit} onClick={handleContent} onChange={handleContent} className='Generating_container'> 
+          {content}
         </div>
         </div>  
     </div>
