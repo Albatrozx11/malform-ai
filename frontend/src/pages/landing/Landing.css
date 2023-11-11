@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap');
 
 /* CSS */
 .button-64 {
@@ -48,4 +48,8 @@
     font-size: 24px;
     min-width: 196px;
   }
+}
+
+a{
+    font-family: 'Lato', sans-serif;
 }

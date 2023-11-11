@@ -15,7 +15,7 @@ function Navbar() {
   };
   return (
     <div className=" bg-slate-900 h-24 flex items-center navbar">
-      <h1 className="mx-20 font-semibold">malForm</h1>
+      <h1 className="mx-20 font-semibold">malForm.ai</h1>
       <ul className="flex space-x-7 ml-auto mx-20">
         <li>
           <a
