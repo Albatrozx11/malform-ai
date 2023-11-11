@@ -41,8 +41,7 @@ def convert_webm_to_wav(webm_file, wav_file):
 
 
 import vertexai
-from vertexai.language_models import TextGenerationModel
-from vertexai.preview.language_models import ChatModel, InputOutputTextPair
+from vertexai.preview.language_models import TextGenerationModel
 from google.auth import default
 from google.auth.transport.requests import Request
 
@@ -65,15 +64,15 @@ if credentials is None or not credentials.valid:
 vertexai.init(project="kinetic-octagon-404610", location="us-central1")
 
 #setting up the chat-bison model
-text_model = TextGenerationModel.from_pretrained("text-bison")
+text_model = TextGenerationModel.from_pretrained("text-bison-32k")
 parameters = {
-    "temperature": 0.5,
-    "max_output_tokens": 1024,
+    "max_output_tokens": 2024,
+    "temperature": 0.2,
     "top_p": 0.8,
     "top_k": 40
 }
 def llmcall(prompt):
-    response = text_model.predict(prompt)
+    response = text_model.predict(prompt, **parameters)
     return( response.text)
 
 

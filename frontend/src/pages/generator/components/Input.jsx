@@ -2,11 +2,17 @@
 import React, { useState } from "react";
 import Mic from "./Mic";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import "../Generator.css";
 function Input() {
   const [record, setRecord] = useState(false);
   const [file, setFile] = useState("");
+  const navigate = useNavigate();
+  const sendToLLM =() =>{
+    navigate('/Output')
+  }
+  
 
   const handleData = (data) => {
     setFile(data.text)
@@ -27,7 +33,7 @@ function Input() {
           പരിപാടിക്കുള്ള ഫീഡ്‌ബാക്ക് ഫോം സൃഷ്‌ടിക്കുക.` ) : file}
         </h1>
       </div>
-      {/* <button onClick={sendToLLM}>Confirm</button> */}
+      <button onClick={sendToLLM}>Confirm</button>
       <div>
         <Mic onDataReady={handleData}/>
       </div>
