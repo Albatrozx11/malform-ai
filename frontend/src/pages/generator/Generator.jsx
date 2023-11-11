@@ -1,9 +1,12 @@
-import React from 'react'
-import './Generator.css'
+import React from "react";
+import "./Generator.css";
+import Input from "./components/Input";
 function Generator() {
   return (
-    <div>Generator</div>
-  )
+    <div>
+      <Input />
+    </div>
+  );
 }
 
-export default Generator
+export default Generator;
