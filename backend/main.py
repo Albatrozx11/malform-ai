@@ -3,7 +3,7 @@ from fastapi import FastAPI,File, UploadFile
 import shutil
 from pydantic import BaseModel
 import os
-from functions import transcribe_speech,translate_text,convert_webm_to_wav
+from functions import transcribe_speech,translate_text,convert_webm_to_wav,llmcall
 from pydub import AudioSegment
 import io
 
@@ -27,7 +27,7 @@ app.add_middleware(
 class Item(BaseModel):
     file : UploadFile = File(...)
 
-
+llm_output = ""  # Global variable to store LLM output
 # create a route for the root endpoint
 @app.get("/")
 def read_root():
@@ -36,6 +36,7 @@ def read_root():
 @app.post("/translate")
 async def translate(file: UploadFile = File(...)):
     # # Save the file in the backend
+    global llm_output
     file_location = f"temp.{file.filename.split('.')[-1]}"
     with open(file_location, "wb+") as dest_file:
         shutil.copyfileobj(file.file, dest_file) 
@@ -45,8 +46,18 @@ async def translate(file: UploadFile = File(...)):
     wav_file_path = r"C:\Users\A lan John Chacko\tinkhack-team-beta\backend\temp.wav"
     convert_webm_to_wav(mp3_file_path, wav_file_path)
     text = transcribe_speech(wav_file_path)
+    translated_text = translate_text(text)  # Translate the transcribed text
+
+    llm_output = llmcall(translated_text)
     return {"text": text}
     # last=llmcall(output)
     # print(last)
 
-@app.post("/llm-output")
+# prompt = translate_text()
+@app.get("/llm-output")
+async def output():
+    global llm_output  # Use the global variable
+    if not llm_output:
+        return {"text":"error"}
+    # JSONResponse(content={"error": "LLM output not available"}, status_code=400)
+    return {"output":llm_output}

@@ -12,19 +12,11 @@ function Input() {
     setFile(data.text)
   }
 
-  const sendToLLM = () => { // Fixed the function declaration
-    const LLMData = {
-      prompt: file,
-    };
-  
-    axios.post('http://127.0.0.1:8000/llm-output', LLMData)
-      .then(response => {
-        onDataReady(response.data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  };
+  // const sendToLLM = () => { // Fixed the function declaration
+  //   const LLMData = {
+  //     prompt: file,
+  //   };
+  // };
  
   return (
     <div className="input">
@@ -35,7 +27,7 @@ function Input() {
           പരിപാടിക്കുള്ള ഫീഡ്‌ബാക്ക് ഫോം സൃഷ്‌ടിക്കുക.` ) : file}
         </h1>
       </div>
-      <button onClick={sendToLLM}>Confirm</button>
+      {/* <button onClick={sendToLLM}>Confirm</button> */}
       <div>
         <Mic onDataReady={handleData}/>
       </div>
