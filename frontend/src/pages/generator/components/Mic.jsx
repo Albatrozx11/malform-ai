@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ReactMic } from 'react-mic';
 import logo from '../../../assets/mic.png'
-import { useNavigate } from 'react-router-dom';
 
 // Create styles
 
 function App({onDataReady}) {
     const [record, setRecord] = useState(false);
-    const navigate = useNavigate();
     const toggleRecording = () => {
       setRecord(!record);
     }

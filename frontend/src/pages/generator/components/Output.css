@@ -89,19 +89,19 @@
     height: 8vh;
 
     display: flex;
-    justify-content: end;
+    justify-content:flex-end ;
     padding: 1vh;
   }
 .Output_Container_Rowwise{
        width: 100%;
-       height: 75vh;
+       height: max-content;
        display: flex;
        justify-content: center;
 }
 
 .Output_Container{
        width: 98%;
-       height: 70vh;
+       height: max-content;
        background-color: #303030;
        border-radius: 3vh;
 
@@ -117,7 +117,7 @@
 }
 .Generating_container{
       width: 95%;
-      height: 60vh;
+      height: max-content;
       font-weight: bold;
       font-size: larger;
       margin-left: 2.5%;
