@@ -1,0 +1,144 @@
+.Output_Main{
+    width: 100%;
+    height: 100vh;
+   
+    }
+    .Output_Main_upper{
+        width: 100%;
+        height: 25vh;
+        display: flex;
+        justify-content: center;
+    }
+  .Dowload_Main
+  {
+    width: 98%;
+    background-color:#fff;
+    height: 15vh;
+    margin-top: 5vh;
+    border-radius:3vh;
+    display: flex; 
+    ;
+  }
+  .Download_Main_Left{
+    width: 50%;
+    height: 15vh;
+    margin: none;
+    padding: none;
+    display: flex;
+    justify-content: center;
+  }
+  .Download_Main_Left_Contents{
+    width: 75%;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .Download_Format_div{
+    width: 80%;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+  }
+  .Download_Main_Left_Contents button{
+    height: 7vh;
+    width: 90%;
+  }
+  .Download_Main_Left_Contents button img{
+    width: 30px;
+    height: 25px;
+    float: left;
+  }
+  #Download_Format{
+      width: 90%;
+      text-align: center;
+      background: #1a1a1a;
+      border-radius: 1vh;
+      height: 7vh;
+      font-weight: bolder;
+      font-size: larger;
+  }
+
+
+  .Download_right{
+    width: 50%;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+  }
+  .Download_right_columnwise{
+    width: 83%;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+  }
+
+.Download_right_columnwise button{
+    font-weight: bolder;
+    text-align: center;
+    font-size: larger;
+}
+
+.Language_selector_main{
+    width: 100%;
+    height: 8vh;
+
+    display: flex;
+    justify-content: end;
+    padding: 1vh;
+  }
+.Output_Container_Rowwise{
+       width: 100%;
+       height: 75vh;
+       display: flex;
+       justify-content: center;
+}
+
+.Output_Container{
+       width: 98%;
+       height: 70vh;
+       background-color: #303030;
+       border-radius: 3vh;
+
+}
+.Language_selector_button button{
+    background: #D9D9D9;
+    font-weight: bolder;
+    color: black;
+    border-radius: 1.625rem;
+    font-size: larger;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.Generating_container{
+      width: 95%;
+      height: 60vh;
+      font-weight: bold;
+      font-size: larger;
+      margin-left: 2.5%;
+
+}
+@media (max-width: 750px)
+{
+    .Download_Main_Left_Contents button{
+        width: 90%;
+    }
+    .Download_Main_Left_Contents button img{
+       display: none; 
+       overflow: hidden;
+    }
+    .Download_Main_Left_Contents button::before {
+        content: 'Edit';
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        display: block;
+}
+}
+
+
