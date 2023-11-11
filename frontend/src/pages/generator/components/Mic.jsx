@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import logo from "../../../assets/mic.png";
+import { ReactMediaRecorder } from "react-media-recorder";
+
 function Mic() {
 
   const [record, setRecord] = useState(false);
@@ -55,12 +57,27 @@ const handleSubmit = (e) => {
   }
 
   return (
-    
-    <div>
-      <div className="h-32 w-32 m-4">
-        <img src={logo} onClick={Micwork} alt="mic-icon" className="mic"/>
-      </div>
-    </div>
+    <ReactMediaRecorder
+      audio
+      render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+        <div>
+          <div className="h-32 w-32 m-4">
+            <img
+              src={logo}
+              alt="mic-icon"
+              className="mic"
+              onClick={status === "recording" ? stopRecording : startRecording}
+            />
+          </div>
+          {/* {status === "recording" && (
+            <p>Recording...</p>
+          )} */}
+          {mediaBlobUrl && (
+            <audio src={mediaBlobUrl} controls autoPlay />
+          )}
+        </div>
+      )}
+    />
   );
 }
 
