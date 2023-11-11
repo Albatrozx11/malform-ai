@@ -8,4 +8,9 @@
 
 .mic:hover{
     opacity: 0.8;
+    
+}
+.mic{
+  width: 100px;
+  margin-left: 20px;
 }
