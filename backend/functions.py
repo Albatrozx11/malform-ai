@@ -68,12 +68,12 @@ vertexai.init(project="kinetic-octagon-404610", location="us-central1")
 text_model = TextGenerationModel.from_pretrained("text-bison")
 parameters = {
     "temperature": 0.5,
-    "max_output_tokens": 20480,
+    "max_output_tokens": 1024,
     "top_p": 0.8,
     "top_k": 40
 }
 def llmcall(prompt):
     response = text_model.predict(prompt)
-    return(f"Response from Model: {response.text}")
+    return( response.text)
 
 

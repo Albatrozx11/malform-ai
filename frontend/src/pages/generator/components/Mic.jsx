@@ -1,84 +1,63 @@
-import React, { useState } from "react";
-import logo from "../../../assets/mic.png";
-import { ReactMediaRecorder } from "react-media-recorder";
+import React, { useState } from 'react';
 import axios from 'axios';
+import { ReactMic } from 'react-mic';
 
-function Mic() {
+// Create styles
 
-    const [record, setRecord] = useState(false);
-    const [file, setFile] = useState(null);
-    const [mic,setmic] =useState(false)
+function App() {
+  const [record, setRecord] = useState(false);
+  const [file, setFile] = useState(null);
 
-    const Micwork = () =>{
-             if(mic==false){
-                    startRecording();
-                    setmic(true)
-             }
-             else{
-                    stopRecording();
-                    setmic(false)
-             }
-    }
+  const startRecording = () => {
+    setRecord(true);
+  }
 
-    const startRecording = () => {
-        setRecord(true);
-    }
+  const stopRecording = () => {
+    setRecord(false);
+  }
 
-    const stopRecording = () => {
-        setRecord(false);
-    }
+  const onData = (recordedBlob) => {
+    console.log('chunk of real-time data is: ', recordedBlob);
+  }
 
-    const onData = (recordedBlob) => {
-        console.log('chunk of real-time data is: ', recordedBlob);
-    }
+  const onStop = (recordedBlob) => {
+    console.log('recordedBlob is: ', recordedBlob);
+    setFile(new File([recordedBlob.blob], 'recordedAudio.webm'));
+  }
 
-    const onStop = (recordedBlob) => {
-        console.log('recordedBlob is: ', recordedBlob);
-        setFile(new File([recordedBlob.blob], 'recordedAudio.wav', {type: 'audio/wav'}));
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formData = new FormData();
+    // Append the file to the form data
+    formData.append('file', file);
 
-        // Append the file to the form data
-        formData.append('file', file);
+    // Use axios to post a value to the backend
+    axios.post('http://127.0.0.1:8000/translate', formData)
+      .then(response => {
+        console.log('Response:', response.data); // Handle the successful response here
+      })
+      .catch(error => {
+        console.error('Error:', error); // Handle any errors that occurred during the request
+      });
+  }
 
-        // Use axios to post a value to the backend
-        axios.post('http://127.0.0.1:8000/translate', formData)
-            .then(response => {
-                console.log('Response:', response.data); // Handle the successful response here
-            })
-            .catch(error => {
-                console.error('Error:', error); // Handle any errors that occurred during the request
-            });
-    }
-
-    return (
-        <ReactMediaRecorder
-            audio
-            render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
-                <div>
-                    <div className="h-32 w-32 m-4">
-                        <img
-                            src={logo}
-                            alt="mic-icon"
-                            className="mic"
-                            onClick={status === "recording" ? stopRecording : startRecording}
-                        />
-                    </div>
-                    {status === "recording" && (
-                        <p>Recording...</p>
-                    )}
-                    {mediaBlobUrl && (
-                        <audio src={mediaBlobUrl} controls autoPlay />
-                    )}
-                    <button onClick={handleSubmit}>Submit</button>
-                </div>
-            )}
-            onStop={onStop}
-        />
-    );
+  return (
+    <div>
+      <ReactMic
+        record={record}
+        className="sound-wave"
+        onStop={onStop}
+        onData={onData}
+        strokeColor="#000000"
+        backgroundColor="#FF4081" />
+      <button onClick={startRecording} type="button">Start</button>
+      <button onClick={stopRecording} type="button">Stop</button>
+      <form onSubmit={handleSubmit}>
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+  );
 }
 
-export default Mic;
+export default App;
