@@ -1,5 +1,4 @@
 import React from "react";
-import { ReactMic } from 'react-mic';
 import logo from "../../../assets/mic.png";
 import { ReactMediaRecorder } from "react-media-recorder";
 
