@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import edit from '../../../assets/Edit.jpg'
 import './Output.css'
+import jsPDF from 'jspdf'
 const Output = () => {
+  const [content,setContent] =useState('');
+  const [Edit,setEdit] =useState(false);
+  const handleContent = () =>{
+    setContent(content)
+    setEdit(true)
+  }
+  const handlePdf =()=>{
+    const doc = new jsPDF({
+      orientation: "landscape",
+      unit: "in",
+      format: [20, 20]
+    });
+    
+    doc.text(content, 1, 1);
+    doc.save("two-by-four.pdf");
+  }
+
   return (
     <div className='Output_Main'>
     <div className='Output_Main_upper'>     
     <div className='Dowload_Main'>
         <div className='Download_Main_Left'>
             <div className='Download_Main_Left_Contents'>
-                <button>Edit as per Your Choises<img src={edit} alt="" /></button>
+                <button onClick={handlePdf}>Edit as per Your Choises<img src={edit} alt="" /></button>
                 
             </div>       
         </div>
@@ -34,16 +52,10 @@ const Output = () => {
               <div className='Language_selector_button'>
                 <button>MAL</button>
               </div>
+              
           </div>
-          <div className='Generating_container'> <p>Mens Hostel, Thrikkara <br />
-        [Date]<br/>
-To,<br /> 
-The Principal,<br /> 
-Model Engineering College, Thrikkara <br />
-Subject: Leave Application for Malaria <br />
-Respected Sir, <br />
-I hope this letter finds you in the best of health and spirits. I am writing to formally request a leave of absence from college for a period of 30 days due to a recent diagnosis of malaria. My name is Alan John Chacko, and I am a student residing at the Men's Hostel in Thrikkara.
-  I regret to inform you that I have been diagnosed with malaria, which requires immediate medical attention and a significant period of rest for a full recovery. My doctor has advised me to undergo a comprehensive treatment plan, which includes medication and adequate rest. As a result, I will be unable to attend classes or fulfill my academic responsibilities during this time.</p>
+          <div contentEditable={Edit} onClick={handleContent} onChange={handleContent} className='Generating_container'> 
+          {content}
         </div>
         </div>  
     </div>
