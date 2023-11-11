@@ -34,8 +34,8 @@ def convert_webm_to_wav(webm_file, wav_file):
 
 
 # Example usage
-mp3_file_path = r"C:\Users\A lan John Chacko\th123\backend\temp.webm"
-wav_file_path = r"C:\Users\A lan John Chacko\th123\backend\temp.wav"
+mp3_file_path = r"C:\Users\adith\tinkhack-team-beta\backend\temp.webm"
+wav_file_path = r"C:\Users\adith\tinkhack-team-beta\backend\temp.wav"
 convert_webm_to_wav(mp3_file_path, wav_file_path)
 
 
