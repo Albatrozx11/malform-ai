@@ -3,7 +3,7 @@ import "./Generator.css";
 import Input from "./components/Input";
 function Generator() {
   return (
-    <div>
+    <div className="flex flex-col justify-center">
       <Input />
     </div>
   );
