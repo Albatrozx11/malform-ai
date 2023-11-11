@@ -2,21 +2,28 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { ReactMic } from 'react-mic';
 import logo from '../../../assets/mic.png'
+import { useNavigate } from 'react-router-dom';
 
 // Create styles
 
-function App() {
+function App({onDataReady}) {
     const [record, setRecord] = useState(false);
-
+    const navigate = useNavigate();
     const toggleRecording = () => {
       setRecord(!record);
     }
   
     const onData = (recordedBlob) => {
+       
+
+    // Use navigate function to navigate to a different route
+      
+  
       console.log('chunk of real-time data is: ', recordedBlob);
     }
   
     const onStop = async (recordedBlob) => {
+      
       console.log('recordedBlob is: ', recordedBlob);
       const file = new File([recordedBlob.blob], 'recordedAudio.webm');
   
@@ -29,6 +36,7 @@ function App() {
         .catch(error => {
           console.error('Error:', error);
         });
+        // navigate('/Output');
     }
 
   return (
@@ -39,13 +47,13 @@ function App() {
         className="sound-wave"
         onStop={onStop}
         onData={onData}
-        strokeColor="#000000"
-        backgroundColor="#FF4081" />
+        strokeColor="#ffff"
+        backgroundColor="transparent" />
       <img
         src={logo}
         alt="mic-icon"
         className="mic"
-        onClick={toggleRecording}
+        onClick={ toggleRecording}
         />
     </div>
       {/* <button onClick={stopRecording} type="button">Stop</button>

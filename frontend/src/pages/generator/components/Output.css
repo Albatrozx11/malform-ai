@@ -123,6 +123,13 @@
       margin-left: 2.5%;
 
 }
+.Generating_container textarea{
+    
+     overflow: auto;
+     outline: none;
+     width: 100%;
+     height: 100vh;
+}
 @media (max-width: 750px)
 {
     .Download_Main_Left_Contents button{

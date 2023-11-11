@@ -3,7 +3,7 @@ from fastapi import FastAPI,File, UploadFile
 import shutil
 from pydantic import BaseModel
 import os
-from functions import transcribe_speech,translate_text,convert_webm_to_wav,llmcall
+from functions import transcribe_speech,translate_text,convert_webm_to_wav
 from pydub import AudioSegment
 import io
 
@@ -27,9 +27,6 @@ app.add_middleware(
 class Item(BaseModel):
     file : UploadFile = File(...)
 
-# create a new fastapi app
-app = FastAPI()
-
 
 # create a route for the root endpoint
 @app.get("/")
@@ -38,18 +35,18 @@ def read_root():
 
 @app.post("/translate")
 async def translate(file: UploadFile = File(...)):
-    # Save the file in the backend
+    # # Save the file in the backend
     file_location = f"temp.{file.filename.split('.')[-1]}"
     with open(file_location, "wb+") as dest_file:
-        shutil.copyfileobj(file.file, dest_file ) 
-    
-    # Example usage
+        shutil.copyfileobj(file.file, dest_file) 
+
+     # Example usage
     mp3_file_path = r"C:\Users\A lan John Chacko\tinkhack-team-beta\backend\temp.webm"
     wav_file_path = r"C:\Users\A lan John Chacko\tinkhack-team-beta\backend\temp.wav"
     convert_webm_to_wav(mp3_file_path, wav_file_path)
-
     text = transcribe_speech(wav_file_path)
-    output = translate_text(text)
-    print(output)
-    last=llmcall(output)
-    print(last)
+    return {"text": text}
+    # last=llmcall(output)
+    # print(last)
+
+@app.post("/llm-output")
