@@ -60,12 +60,15 @@ function Navbar() {
                 <img
                   src={closingicon}
                   alt=""
-                  className="Sign_in_close"
+                  className="Sign_in_close mb-4 mr-4"
                   onClick={handleCloseButtonClick}
                 />
-
-                <h2 className="Sign_in_heading">Sign in</h2>
-                <h2 className="its_simple_and_easy">it's simple and easy</h2>
+                <div className="my-5">
+                  <h2 className="Sign_in_heading text-[26px] ml-12">Sign in</h2>
+                  <h2 className="its_simple_and_easy ml-14">
+                    it's simple and easy
+                  </h2>
+                </div>
               </div>
               <div className="Sign_in_button_google_div">
                 <button className="Sign_in_button_google">

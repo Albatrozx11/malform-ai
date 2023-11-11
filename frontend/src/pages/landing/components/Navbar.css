@@ -9,95 +9,95 @@
 
 /* Use the font in your styles */
 .centered {
-    background:#1a1a1a ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-.Login_Main_div_second{
-    width: 30%;
-    height: 45vh;
-    background-color: #1a1a1a;
-    color: #fff;
-    border-radius: 5%;
-    display: flex;
-    justify-content: center;
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-.Cont_container{
-    width: 100%;
-    height: 50vh;
-    text-align: center;
-    align-items: center;
-
-} 
-.signin_heading_div{
-    width: 100%;
-    height: 15vh;
-    text-align: center;
-    font-weight: bolder;
-    font-size: larger;
+.Login_Main_div_second {
+  width: 30%;
+  padding-top: 20px;
+  height: 50vh;
+  background-color: #1a1a1a;
+  color: #fff;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
 }
-.Sign_in_close{
-    float: right;
-    width: 5vh;
-    height: 5vh;
-    cursor: pointer;
+.Cont_container {
+  width: 100%;
+  height: 50vh;
+  text-align: center;
+  align-items: center;
 }
-.its_simple_and_easy{
-    font-size: 30px;
+.signin_heading_div {
+  width: 100%;
+  height: 15vh;
+  text-align: center;
+  font-weight: bolder;
+  font-size: larger;
 }
-.Sign_in_button_google_div{
-    width: 100%;
-    height: 10vh;
-    display: flex;
-    justify-content: center;
+.Sign_in_close {
+  float: right;
+  width: 5vh;
+  height: 5vh;
+  cursor: pointer;
 }
-.Sign_in_button_google{
-    width: 90%;
-    height: 9vh;
-    text-align: center;
-    color: #fff;
-    margin-top: 1vh;
-    border-radius: 35vh;
-    display: flex;
-    justify-content: center;
-    font-size: larger;
-    font-weight: bolder;
+.its_simple_and_easy {
+  font-size: 30px;
 }
-.Sign_in_button_google img{
-    margin-top: .75vh;
-    margin-right: 1vh;
-} 
-.Centre_line{
-    display: flex; 
-    justify-content: center;
-    font-size: larger; 
+.Sign_in_button_google_div {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
 }
-.hr1{
-     width: 40%;
-     margin-top: 2.5vh;
+.Sign_in_button_google {
+  width: 90%;
+  height: 9vh;
+  text-align: center;
+  color: #fff;
+  margin-top: 1vh;
+  border-radius: 35vh;
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+  font-weight: bolder;
 }
-.Sign_in_button_email_div{
-    width: 100%;
-    height: 10vh;
-    display: flex;
-    justify-content: center;
+.Sign_in_button_google img {
+  margin-top: 0.75vh;
+  margin-right: 1vh;
 }
-.Sign_in_button_email{
-    width: 90%;
-    height: 9vh;
-    text-align: center;
-    color: #fff;
-    margin-top: 1vh;
-    border-radius: 35vh;
-    display: flex;
-    justify-content: center;
-    font-size: larger;
-    font-weight: bolder;
+.Centre_line {
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+}
+.hr1 {
+  width: 40%;
+  margin-top: 2.5vh;
+}
+.Sign_in_button_email_div {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+}
+.Sign_in_button_email {
+  width: 90%;
+  height: 9vh;
+  text-align: center;
+  color: #fff;
+  margin-top: 1vh;
+  border-radius: 35vh;
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+  font-weight: bolder;
 }
