@@ -4,15 +4,21 @@ import "./Output.css";
 import jsPDF from "jspdf";
 import axios from "axios";
 import dload from "../../../assets/downloadbtn.png";
+
+// ... (imports)
+
 const Output = () => {
   const [content, setContent] = useState("");
-  const [Edit, setEdit] = useState(false);
+  const [originalContent, setOriginalContent] = useState("");
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/llm-output");
-        setContent(response.data.output.replace(/\n/g, "<br>"));
+        const output = response.data.output.replace(/\n/g, "<br>");
+        setContent(output);
+        setOriginalContent(output);
         console.log(response.data.text);
       } catch (error) {
         console.error("Error:", error);
@@ -21,9 +27,15 @@ const Output = () => {
     fetchData();
   }, []);
 
-  const handleContent = () => {
-    setEdit(true);
-    setContent(content);
+  const handleToggleEditMode = () => {
+    setEditMode(!editMode);
+    if (!editMode) {
+      setContent(originalContent);
+    }
+  };
+
+  const handleBlur = () => {
+    setOriginalContent(document.getElementById("editableDiv").innerHTML);
   };
 
   const handlePdf = () => {
@@ -32,7 +44,8 @@ const Output = () => {
       unit: "in",
       format: [20, 20],
     });
-    const contentWithoutBr = content.replace(/<br>/g, "\n");
+
+    const contentWithoutBr = originalContent.replace(/<br>/g, "\n"); // Use original content for PDF
     doc.text(contentWithoutBr, 1, 1);
 
     doc.save("two-by-four.pdf");
@@ -44,16 +57,16 @@ const Output = () => {
         <div className="Dowload_Main">
           <div className="Download_Main_Left">
             <div className="Download_Main_Left_Contents">
-              <button onClick={handleContent}>
-                Edit as per Your Choises
+              <button onClick={handleToggleEditMode}>
+                {editMode ? "Save Changes" : "Edit as per Your Choices"}
                 <img src={edit} alt="" />
               </button>
             </div>
           </div>
           <div className="Download_right">
             <div className="Download_Format_div">
-              <select name="Dowload_Format" id="Download_Format">
-                <option value="selct method">Choose Format</option>
+              <select name="Download_Format" id="Download_Format">
+                <option value="select method">Choose Format</option>
                 <option value="PDF">PDF</option>
                 <option value="Word">Written Format</option>
               </select>
@@ -61,7 +74,7 @@ const Output = () => {
             <img
               src={dload}
               alt="download"
-              className="w-[100px] h[100px] mr-2"
+              className="w-[90px] h[20px] mr-2"
               onClick={handlePdf}
             />
           </div>
@@ -71,9 +84,9 @@ const Output = () => {
         <div className="Output_Container">
           <div className="Language_selector_main"></div>
           <div
-            contentEditable={Edit}
-            onClick={handleContent}
-            onChange={handleContent}
+            contentEditable={editMode}
+            onBlur={handleBlur}
+            id="editableDiv"
             className="Generating_container"
             dangerouslySetInnerHTML={{ __html: content }}
           ></div>
@@ -84,3 +97,4 @@ const Output = () => {
 };
 
 export default Output;
+

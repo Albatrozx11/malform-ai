@@ -94,7 +94,7 @@
 
 .Output_Container {
   width: 98%;
-  height: max-content;
+  height: 100vh;
   background-color: #303030;
   border-radius: 3vh;
 }

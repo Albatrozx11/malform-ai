@@ -32,6 +32,7 @@ function Input() {
           ആവശ്യമായ വിശദാംശങ്ങളും ചേർക്കുക. ഉദാഹരണം ഞാൻ നടത്തിയ ഒരു സ്‌കൂൾ
           പരിപാടിക്കുള്ള ഫീഡ്‌ബാക്ക് ഫോം സൃഷ്‌ടിക്കുക.` ) : file}
         </h1>
+
       </div>
       <button onClick={sendToLLM}>Confirm</button>
       <div>
