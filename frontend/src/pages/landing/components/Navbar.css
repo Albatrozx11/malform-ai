@@ -18,6 +18,8 @@
   left: 0;
   width: 100%;
   height: 100%;
+  backdrop-filter: blur(2px);
+  z-index: 2;
   background-color: rgba(0, 0, 0, 0.5);
 }
 .Login_Main_div_second {

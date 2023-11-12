@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 origins = [
-    # Add your frontend URL(s) here
+   
     "http://localhost",
     "http://localhost:5173",
 ]
@@ -20,15 +20,14 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["OPTIONS", "GET", "POST", "PUT", "DELETE"],  # Add other allowed methods as needed
+    allow_methods=["OPTIONS", "GET", "POST", "PUT", "DELETE"],  
     allow_headers=["*"],
 )
 
 class Item(BaseModel):
     file : UploadFile = File(...)
 
-llm_output = ""  # Global variable to store LLM output
-# create a route for the root endpoint
+llm_output = ""  
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -56,7 +55,7 @@ async def translate(file: UploadFile = File(...)):
 # prompt = translate_text()
 @app.get("/llm-output")
 async def output():
-    global llm_output  # Use the global variable
+    global llm_output  
     if not llm_output:
         return {"text":"error"}
     # JSONResponse(content={"error": "LLM output not available"}, status_code=400)

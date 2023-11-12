@@ -1,9 +1,44 @@
 import React, { useState } from "react";
+import { getAuth, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+import app from "../../../firebase";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import googleicon from "../../../assets/google-icon.jpeg";
 import closingicon from "../../../assets/exit-icon.png";
 function Navbar() {
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+  const navigate = useNavigate();
+
+  const handleSignIn = async () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+
+        // The signed-in user info.
+        const token = credential.accessToken;
+
+        const user = result.user;
+        navigate("/Generator");
+
+        console.log(user);
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
   const [showDiv, setShowDiv] = useState(false);
 
   const handleHaiButtonClick = () => {
@@ -71,7 +106,10 @@ function Navbar() {
                 </div>
               </div>
               <div className="Sign_in_button_google_div">
-                <button className="Sign_in_button_google">
+                <button
+                  className="Sign_in_button_google"
+                  onClick={handleSignIn}
+                >
                   <img src={googleicon} alt="" /> Sign in with Google
                 </button>
               </div>

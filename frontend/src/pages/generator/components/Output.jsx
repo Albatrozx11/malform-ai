@@ -43,12 +43,13 @@ const Output = () => {
       orientation: "landscape",
       unit: "in",
       format: [20, 20],
+      margin: [10, 10, 10, 10],
     });
 
     const contentWithoutBr = originalContent.replace(/<br>/g, "\n"); // Use original content for PDF
     doc.text(contentWithoutBr, 1, 1);
 
-    doc.save("two-by-four.pdf");
+    doc.save("form.pdf");
   };
 
   return (
@@ -65,18 +66,14 @@ const Output = () => {
           </div>
           <div className="Download_right">
             <div className="Download_Format_div">
-              <select name="Download_Format" id="Download_Format">
-                <option value="select method">Choose Format</option>
-                <option value="PDF">PDF</option>
-                <option value="Word">Written Format</option>
-              </select>
+              <button
+                name="Download_Format"
+                id="Download_Format"
+                onClick={handlePdf}
+              >
+                Download
+              </button>
             </div>
-            <img
-              src={dload}
-              alt="download"
-              className="w-[90px] h[20px] mr-2"
-              onClick={handlePdf}
-            />
           </div>
         </div>
       </div>
@@ -97,4 +94,3 @@ const Output = () => {
 };
 
 export default Output;
-

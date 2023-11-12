@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 // import Typer from "./components/Typer";
 import { TypeAnimation } from "react-type-animation";
-import AboutUs from "./components/AboutUs";
 function Landing() {
   return (
     <div>
@@ -12,7 +11,7 @@ function Landing() {
       <div className="flex justify-center flex-col items-center h-[50vh]">
         <Link to="/generator">
           <button className="w-[700px] h-[80px]  text-[30px] button-64 my-8">
-            Go to Generator
+            Generate
           </button>
         </Link>
         <div className="text-[22px] font-semibold">
@@ -36,7 +35,6 @@ function Landing() {
           />
         </div>
       </div>
-      <AboutUs />
     </div>
   );
 }
