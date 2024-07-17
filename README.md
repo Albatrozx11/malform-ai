@@ -1,4 +1,4 @@
-**malForm.ai**
+# malForm.ai
 
 A genAI application for Malayalees. Users can prompt through Malayalam speech and get generated output in English. malForm is specially engineered to generate documents, forms, letters, and even stories. With an efficient UI made with React at the frontend and FastAPI on the backend, It uses Google Clouds Vertex AI architecture for quick generations.
 
